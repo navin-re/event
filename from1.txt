@@ -1,0 +1,6 @@
+ If Pname.Text = "" Or Collegecombobox.Text = "" Or deptcombobox.Text = "" Then
+            MsgBox("Please enter all required fields", MsgBoxStyle.Exclamation, "Incomplete  entries")
+
+        Else
+            MsgBox("Data sent to server", MsgBoxStyle.Information, "Success")
+        End If

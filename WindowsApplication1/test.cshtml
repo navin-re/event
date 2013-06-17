@@ -1,0 +1,57 @@
+﻿using Microsoft.VisualBasic;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Diagnostics;
+using System.Windows.Forms;
+using System.Linq;
+using System.Xml.Linq;
+using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
+
+public partial class Form1
+{
+
+	private void Form1_Load(System.Object sender, System.EventArgs e)
+	{
+		//TODO: This line of code loads data into the 'DataSet1.COLLEGE' table. You can move, or remove it, as needed.
+		string oradb = "Data Source=(DESCRIPTION=" + "(ADDRESS=(PROTOCOL=TCP)(HOST=NAVIN-PC)(PORT=1521))" + "(CONNECT_DATA=(SERVICE_NAME=oracle)));" + "User Id=system;Password=navin;";
+		OracleConnection conn = new OracleConnection(oradb);
+		OracleConnection conn = new OracleConnection();
+		conn.ConnectionString = oradb;
+		conn.Open();
+		OracleCommand cmd = new OracleCommand();
+		cmd.Connection = conn;
+		cmd.CommandText = "select cname from college";
+		cmd.CommandType = CommandType.Text;
+
+		OracleDataReader dr = cmd.ExecuteReader();
+		while (dr.Read()) {
+			ComboBox1.Items.Add(dr["cname"].ToString());
+
+		}
+		dr.Dispose();
+		cmd.Dispose();
+		conn.Dispose();
+	}
+
+
+	private void Button1_Click(System.Object sender, System.EventArgs e)
+	{
+	}
+
+
+	private void TextBox1_TextChanged(System.Object sender, System.EventArgs e)
+	{
+	}
+
+
+
+	private void ComboBox1_SelectedIndexChanged(System.Object sender, System.EventArgs e)
+	{
+
+	}
+
+}
